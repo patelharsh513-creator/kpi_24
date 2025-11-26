@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI-Powered KPI Dashboard</title>
+    
+    <!-- Runtime Polyfill: CRITICAL for preventing "process is not defined" crashes -->
+    <script>
+      window.process = window.process || { env: {} };
+    </script>
+
+    <!-- Tailwind CSS CDN: Restored for immediate UI fix in preview -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'gray-900': '#121212',
+              'gray-800': '#1e1e1e',
+              'gray-700': '#2a2a2a',
+              'gray-600': '#3a3a3a',
+              'gray-400': '#9ca3af',
+              'gray-200': '#e5e7eb',
+            },
+          },
+        },
+      }
+    </script>
+
+    <!-- Error Handling Script -->
+    <script>
+      window.addEventListener('error', function(e) {
+        if (e.message && e.message.includes('ResizeObserver')) return;
+        
+        let errorBox = document.getElementById('global-error-box');
+        if (!errorBox) {
+          errorBox = document.createElement('div');
+          errorBox.id = 'global-error-box';
+          errorBox.style.cssText = 'position:fixed;top:0;left:0;width:100%;background:#7f1d1d;color:#fee2e2;padding:20px;z-index:99999;font-family:sans-serif;box-sizing:border-box;border-bottom:2px solid #ef4444;';
+          document.body.prepend(errorBox);
+        }
+        const msg = document.createElement('div');
+        msg.style.marginBottom = '10px';
+        msg.innerHTML = '<strong>Application Error:</strong> ' + (e.message || 'Unknown error');
+        errorBox.appendChild(msg);
+      }, true);
+    </script>
+    
+    <!-- XLSX for Excel parsing if needed -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "recharts": "https://aistudiocdn.com/recharts@^3.5.0",
+    "firebase/": "https://aistudiocdn.com/firebase@^12.6.0/",
+    "vite": "https://aistudiocdn.com/vite@^7.2.4",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-gray-900 text-gray-200">
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
