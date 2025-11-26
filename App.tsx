@@ -237,7 +237,7 @@ export default function App() {
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Bot className="w-8 h-8 text-cyan-400" />
-            <h1 className="text-2xl font-bold tracking-tight text-white">Live Logistics Operations</h1>
+            <h1 className="text-2xl font-bold tracking-tight text-white">KPI Dashboard</h1>
           </div>
           {/* Debug Indicator to confirm data loading */}
           <div className="text-xs text-gray-500">

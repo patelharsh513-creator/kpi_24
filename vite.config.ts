@@ -1,18 +1,15 @@
-
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => {
-  // Load env file based on `mode` in the current working directory.
   const env = loadEnv(mode, (process as any).cwd(), '');
   
-  // Prioritize keys in this order
-  const apiKey = env.API_KEY || env.VITE_API_KEY || env.GOOGLE_API_KEY || '';
-  const firebaseApiKey = env.FIREBASE_API_KEY || env.VITE_FIREBASE_API_KEY || '';
+  const apiKey = env.API_KEY || env.VITE_API_KEY || "AIzaSyD8Z3UWYD6Djnim8WJjEC-42gPrHzvzhdA";
+  const firebaseApiKey = env.FIREBASE_API_KEY || env.VITE_FIREBASE_API_KEY || "AIzaSyCHpiYrXfvAfT-C2y40Uk78GBNFeVj9iQo";
 
   return {
     plugins: [react()],
-    base: './', // CRITICAL: Ensures assets load correctly on GitHub Pages (relative paths)
+    base: './', 
     build: {
       outDir: 'dist',
       assetsDir: 'assets',
@@ -20,7 +17,6 @@ export default defineConfig(({ mode }) => {
       emptyOutDir: true,
     },
     define: {
-      // CRITICAL: Prevent "process is not defined" error in browser
       'process.env': {}, 
       'process.env.API_KEY': JSON.stringify(apiKey),
       'process.env.FIREBASE_API_KEY': JSON.stringify(firebaseApiKey),

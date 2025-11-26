@@ -29,25 +29,6 @@
         },
       }
     </script>
-
-    <!-- Error Handling Script -->
-    <script>
-      window.addEventListener('error', function(e) {
-        if (e.message && e.message.includes('ResizeObserver')) return;
-        
-        let errorBox = document.getElementById('global-error-box');
-        if (!errorBox) {
-          errorBox = document.createElement('div');
-          errorBox.id = 'global-error-box';
-          errorBox.style.cssText = 'position:fixed;top:0;left:0;width:100%;background:#7f1d1d;color:#fee2e2;padding:20px;z-index:99999;font-family:sans-serif;box-sizing:border-box;border-bottom:2px solid #ef4444;';
-          document.body.prepend(errorBox);
-        }
-        const msg = document.createElement('div');
-        msg.style.marginBottom = '10px';
-        msg.innerHTML = '<strong>Application Error:</strong> ' + (e.message || 'Unknown error');
-        errorBox.appendChild(msg);
-      }, true);
-    </script>
     
     <!-- XLSX for Excel parsing if needed -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
