@@ -58,4 +58,4 @@ npm run dev
 ## Troubleshooting
 
 -   **Charts not showing?** Ensure your window is wide enough or try refreshing. The charts need real data or explicit zeroes to render.
--   **API Key Missing:** If running locally, create a `.env` file with `VITE_API_KEY="AIzaSyCHpiYrXfvAfT-C2y40Uk78GBNFeVj9iQo". If on GitHub, follow step 3 above.
+-   **API Key Missing:** If running locally, create a `.env` file with `VITE_API_KEY=your_key_here`. If on GitHub, follow step 3 above.
