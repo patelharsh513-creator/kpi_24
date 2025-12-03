@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { kpiDashboard } from './components/kpiDashboard';
+import { KpiDashboard } from './components/kpiDashboard';
 import { DataEntryForm } from './components/DataEntryForm';
 import { InsightsPanel } from './components/InsightsPanel';
 import { ErrorMessage } from './components/ErrorMessage';
@@ -58,7 +58,7 @@ const getWeekNumber = (d: Date): string => {
     return `${d.getUTCFullYear()}-W${weekNo}`;
 };
 
-type City = 'Logistic  Berlin' | 'BELLABONA';
+type City = 'Logistic kpi Berlin' | 'BELLABONA';
 
 function App() {
   const [appState, setAppState] = useState<AppState>({
@@ -71,14 +71,14 @@ function App() {
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false); 
   
   // Navigation State
-  const [activeCity, setActiveCity] = useState<City>('Logistic  Berlin');
+  const [activeCity, setActiveCity] = useState<City>('Logistic kpi Berlin');
 
   // Subscribe to Firebase data on mount
   useEffect(() => {
     const unsubscribe = subscribeToRecords((rawRecords) => {
       // --- HYDRATION STEP ---
       const hydratedRecords = rawRecords.map(record => {
-          const calculated = calculate(record);
+          const calculated = calculatekpi(record);
           return { ...record, ...calculated };
       });
 
@@ -110,7 +110,7 @@ function App() {
     }
   }, []);
 
-  const calculatedData: CalculatedData = useCalculations(appState.currentInputs);
+  const calculatedData: CalculatedData = usekpiCalculations(appState.currentInputs);
 
   const liveRecord = useMemo<DailyRecord>(() => {
     return {
@@ -285,7 +285,7 @@ function App() {
               <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
                   {/* Dashboard takes more space */}
                   <div className="xl:col-span-3">
-                      <Dashboard 
+                      <KpiDashboard 
                         data={liveDataForVisualization} 
                         isLoading={isLoading} 
                         selectedDate={appState.currentInputs.date}

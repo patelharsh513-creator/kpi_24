@@ -19,7 +19,10 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
 
   const handleSave = () => {
     if (geminiKey) localStorage.setItem('gemini_api_key', geminiKey.trim());
+    else localStorage.removeItem('gemini_api_key'); // Allow clearing the key
+    
     if (firebaseKey) localStorage.setItem('firebase_api_key', firebaseKey.trim());
+    else localStorage.removeItem('firebase_api_key'); // Allow clearing the key
     
     // Reload to apply changes to services
     window.location.reload();
