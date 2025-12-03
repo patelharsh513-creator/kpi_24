@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react()],
-    base: './', 
+    base: './kpi_24/', 
     build: {
       outDir: 'dist',
       assetsDir: 'assets',
