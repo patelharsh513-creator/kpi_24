@@ -9,7 +9,9 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react()],
-    base: './kpi_24/', 
+    // --- THIS IS THE CRITICAL CHANGE ---
+    base: './kpi_24/', // Use the absolute path for your repository name
+    // ------------------------------------
     build: {
       outDir: 'dist',
       assetsDir: 'assets',
