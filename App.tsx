@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { KpiDashboard } from './components/KpiDashboard';
+import { kpiDashboard } from './components/kpiDashboard';
 import { DataEntryForm } from './components/DataEntryForm';
 import { InsightsPanel } from './components/InsightsPanel';
 import { ErrorMessage } from './components/ErrorMessage';
@@ -7,7 +7,7 @@ import { SuccessMessage } from './components/SuccessMessage';
 import { SettingsModal } from './components/SettingsModal'; 
 import { CityPage } from './components/CityPage';
 import { AppState, DailyInputs, DailyRecord, CalculatedData, PeriodTotals } from './types';
-import { useKpiCalculations, calculateKpi } from './hooks/useKpiCalculations';
+import { usekpiCalculations, calculatekpi } from './hooks/usekpiCalculations';
 import { saveDailyRecord, subscribeToRecords } from './services/firebase';
 import { exportDataToExcel } from './services/excelParser';
 import { Settings, Download } from 'lucide-react'; 
@@ -58,7 +58,7 @@ const getWeekNumber = (d: Date): string => {
     return `${d.getUTCFullYear()}-W${weekNo}`;
 };
 
-type City = 'Logistic KPI Berlin' | 'BELLABONA';
+type City = 'Logistic  Berlin' | 'BELLABONA';
 
 function App() {
   const [appState, setAppState] = useState<AppState>({
@@ -71,14 +71,14 @@ function App() {
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false); 
   
   // Navigation State
-  const [activeCity, setActiveCity] = useState<City>('Logistic KPI Berlin');
+  const [activeCity, setActiveCity] = useState<City>('Logistic  Berlin');
 
   // Subscribe to Firebase data on mount
   useEffect(() => {
     const unsubscribe = subscribeToRecords((rawRecords) => {
       // --- HYDRATION STEP ---
       const hydratedRecords = rawRecords.map(record => {
-          const calculated = calculateKpi(record);
+          const calculated = calculate(record);
           return { ...record, ...calculated };
       });
 
@@ -110,7 +110,7 @@ function App() {
     }
   }, []);
 
-  const calculatedData: CalculatedData = useKpiCalculations(appState.currentInputs);
+  const calculatedData: CalculatedData = useCalculations(appState.currentInputs);
 
   const liveRecord = useMemo<DailyRecord>(() => {
     return {
@@ -285,7 +285,7 @@ function App() {
               <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
                   {/* Dashboard takes more space */}
                   <div className="xl:col-span-3">
-                      <KpiDashboard 
+                      <Dashboard 
                         data={liveDataForVisualization} 
                         isLoading={isLoading} 
                         selectedDate={appState.currentInputs.date}
@@ -318,7 +318,7 @@ function App() {
 
           {/* MAIN CITY NAVIGATION */}
           <nav className="flex items-center bg-gray-900/60 p-1 rounded-lg border border-gray-700/50 overflow-x-auto max-w-[50vw] sm:max-w-none no-scrollbar">
-             {(['Logistic KPI Berlin', 'BELLABONA'] as City[]).map((city) => {
+             {(['Logistic kpi Berlin', 'BELLABONA'] as City[]).map((city) => {
                const isActive = activeCity === city;
                let activeClass = 'bg-cyan-600 text-white shadow-md';
                
@@ -340,7 +340,7 @@ function App() {
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-3"> 
-             {activeCity === 'Logistic KPI Berlin' && (
+             {activeCity === 'Logistic kpi Berlin' && (
                 <button
                     onClick={handleExport}
                     className="flex items-center gap-2 px-3 py-2 text-sm bg-green-600/20 text-green-400 border border-green-600/30 rounded-md hover:bg-green-600/30 transition-colors"
@@ -366,7 +366,7 @@ function App() {
         {appState.error && <ErrorMessage message={appState.error} onClear={() => setAppState(prev => ({ ...prev, error: null }))} />}
         {appState.success && <SuccessMessage message={appState.success} onClear={() => setAppState(prev => ({ ...prev, success: null }))} />}
         
-        {activeCity === 'Logistic KPI Berlin' ? renderMainContent() : <CityPage cityName={activeCity} />}
+        {activeCity === 'Logistic kpi Berlin' ? renderMainContent() : <CityPage cityName={activeCity} />}
 
       </main>
       <SettingsModal isOpen={isSettingsModalOpen} onClose={() => setIsSettingsModalOpen(false)} />
