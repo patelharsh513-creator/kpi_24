@@ -13,14 +13,19 @@ jobs:
         # Gets the code from your repository
         uses: actions/checkout@v4
       
-      - name: Install Node.js 🚀
-        # Sets up the environment to run npm commands
+      - name: Install Node.js Environment 🚀
+        # Sets up the necessary Node.js environment (which includes npm)
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          
+      # --- ADD THIS NEW STEP ---
+      - name: Clear npm Cache
+        run: npm cache clean --force
+      # -------------------------
       
-      - name: Install Dependencies 📦
-        # Runs the command to download all necessary libraries
+      - name: Install Project Dependencies 📦
+        # Runs 'npm install' to download libraries (like React and Vite)
         run: npm install
         
       - name: Build Project 🏗️
