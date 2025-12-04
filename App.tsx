@@ -1,15 +1,15 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { KpiDashboard } from './kpiDashboard';
-import { DataEntryForm } from './DataEntryForm';
-import { InsightsPanel } from './InsightsPanel';
-import { ErrorMessage } from './ErrorMessage';
-import { SuccessMessage } from './SuccessMessage';
-import { SettingsModal } from './SettingsModal'; 
-import { CityPage } from './CityPage';
+import { KpiDashboard } from './components/kpiDashboard';
+import { DataEntryForm } from './components/DataEntryForm';
+import { InsightsPanel } from './components/InsightsPanel';
+import { ErrorMessage } from './components/ErrorMessage';
+import { SuccessMessage } from './components/SuccessMessage';
+import { SettingsModal } from './components/SettingsModal'; 
+import { CityPage } from './components/CityPage';
 import { AppState, DailyInputs, DailyRecord, CalculatedData, PeriodTotals } from './types';
-import { usekpiCalculations, calculatekpi } from './usekpiCalculations';
-import { saveDailyRecord, subscribeToRecords } from './firebase';
-import { exportDataToExcel } from './excelParser';
+import { usekpiCalculations, calculatekpi } from './hooks/usekpiCalculations';
+import { saveDailyRecord, subscribeToRecords } from './services/firebase';
+import { exportDataToExcel } from './services/excelParser';
 import { Settings, Download } from 'lucide-react'; 
 
 const initialInputs: Partial<DailyInputs> = {
