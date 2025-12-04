@@ -1,5 +1,0 @@
-{
-  "name": "AI-Powered KPI Dashboard",
-  "description": "An interactive dashboard to upload and visualize Key Performance Indicator (KPI) data from Excel files. The application uses AI to automatically generate insights, identify trends, and provide actionable recommendations based on your data.",
-  "requestFramePermissions": []
-}
