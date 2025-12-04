@@ -1,11 +1,11 @@
 
 # Live Logistics Operations Dashboard
 
-An AI-powered dashboard for tracking logistics KPIs, dispatching costs, and operational efficiency.
+An AI-powered dashboard for tracking logistics kpis, dispatching costs, and operational efficiency.
 
 ## 🚀 How to Connect & Deploy to GitHub
 
-This project is pre-configured with a GitHub Actions workflow (`.github/workflows/deploy.yml`) to automatically deploy your app to GitHub Pages.
+This project is pre-configured with a GitHub Actions workflow (`.github/workflows/main.yml`) to automatically deploy your app to GitHub Pages.
 
 ### 1. Initialize Git (If working locally)
 
